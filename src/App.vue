@@ -5,11 +5,16 @@
     </header>
     <main>
       <aside class="sidebar">
-        <div v-for="post in posts">
-          {{ post.title }}
-        </div>
+        <router-link
+            v-for="post in posts"
+            active-class="is-active"
+            class="link"
+            :to="{ name: 'post', params: { id: post.id } }">
+          {{post.id}}. {{post.title}}
+        </router-link>
       </aside>
       <div class="content">
+        <router-view></router-view>
       </div>
     </main>
   </div>
@@ -106,5 +111,20 @@
     display: flex;
     align-items: center;
     justify-content: center;
+  }
+  .link {
+    display: block;
+    text-decoration: none;
+    margin-bottom: 10px;
+    color: #2c3e50;
+
+    &--home {
+      text-transform: uppercase;
+      margin-bottom: 30px;
+    }
+
+    &.is-active {
+      color: #42b983;
+    }
   }
 </style>
