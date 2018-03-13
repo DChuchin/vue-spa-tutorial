@@ -1,5 +1,6 @@
 var path = require('path')
 var webpack = require('webpack')
+var PrerenderSpaPlugin = require('prerender-spa-plugin')
 
 module.exports = {
   entry: './src/main.js',
@@ -50,7 +51,19 @@ module.exports = {
   performance: {
     hints: false
   },
-  devtool: '#eval-source-map'
+  devtool: '#eval-source-map',
+
+  plugins: [
+    new PrerenderSpaPlugin(
+      // Absolute path to compiled SPA
+      path.join(__dirname, '.'),
+      // List of routes to prerender
+      [ '/', '/post/1', '/post/2', '/post/3', '/post/4'],
+      {
+        captureAfterTime: 10000,
+      }
+    )
+  ]
 }
 
 if (process.env.NODE_ENV === 'production') {
