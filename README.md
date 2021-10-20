@@ -1,3 +1,4 @@
+# DEPRECATED
 # Simple Vue.js SPA
 
 > A Vue.js Single Page Application Tutorial
